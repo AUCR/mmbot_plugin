@@ -1,0 +1,21 @@
+info:
+  project_name: "mmbot_plugin"
+  project_start_date: 11/14/2018
+  name: "mmbot_plugin"
+  authors: "Wyatt Roersma, Evan Gaustad"
+  authors_email: "wyattroersma@gmail.com"
+  description: "mmbot_plugin is a plugin for https://github.com/egaus/MaliciousMacroBot."
+  license: 'MIT'
+  classifiers:
+    - 'Development Status :: 4 - Beta'
+    - 'Intended Audience :: Developers'
+    - 'License :: OSI Approved :: MIT license'
+    - 'Programming Language :: Python :: 3.6'
+  url: 'https://github.com/egaus/MaliciousMacroBot'
+
+
+version:
+  major: 0
+  minor: 0
+  revision: 0
+  release: 1

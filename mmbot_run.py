@@ -33,3 +33,4 @@ def call_back(ch, method, properties, md5_hash):
                                    md5_hash=md5_hash.decode('utf-8'))
             db.session.add(new_mmbot)
             db.session.commit()
+
