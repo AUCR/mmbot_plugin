@@ -53,7 +53,6 @@ class MmBotTable(db.Model):
             'vba_mean_loc_per_func': self.vba_mean_loc_per_func,
             'function_names': self.function_names,
             'prediction': self.prediction,
-            'confidence': self.confidence,
-
+            'confidence': self.confidence
         }
         return data
