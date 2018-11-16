@@ -39,7 +39,6 @@ class MmBotTable(db.Model):
         data = {
             'id': self.id,
             'processed_time_stamp': self.processed_time_stamp.isoformat() + 'Z',
-            'group_access': self.group_access,
             'vba_lang_features': self.vba_lang_features,
             'vba_avg_param_per_func': self.vba_avg_param_per_func,
             'vba_cnt_comment_loc_ratio': self.vba_cnt_comment_loc_ratio,
@@ -53,6 +52,7 @@ class MmBotTable(db.Model):
             'vba_mean_loc_per_func': self.vba_mean_loc_per_func,
             'function_names': self.function_names,
             'prediction': self.prediction,
-            'confidence': self.confidence
+            'confidence': self.confidence,
+            'md5_hash': self.md5_hash
         }
         return data

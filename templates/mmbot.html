@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    <main class="mdl-layout__content">
+        <div class="page-content">
+            <div class="mdl-grid">
+                <span class="mdl-layout-title">MMBOT</span>
+                <div class="mdl-layout-spacer"></div>
+            </div>
+            <div class="mdl-layout-spacer"></div>
+                {% with form_object="table",
+                        checkbox_enabled="",
+                        table_header=["ID", "MD5", "Prediction", "Confidence", "Process Time"],
+                        url_for_value='mmbot.mmbot_plugin_report' %}
+                {% include "subtemplates/_table_object_with_name.html" %}
+            {% endwith %}
+            {% with form_object="prevnextnav", prev_url=prev_url, prev_text="Back", next_url=next_url, next_text="Next" %}
+                {% include "subtemplates/_prev_next_nav.html" %}
+            {% endwith %}
+            <div class="mdl-layout-spacer"></div>
+        </div>
+    </main>
+{% endblock %}

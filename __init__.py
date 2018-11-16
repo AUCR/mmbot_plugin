@@ -5,11 +5,15 @@ import os
 from aucr_app.plugins.tasks.mq import get_a_task_mq
 from aucr_app.plugins.mmbot_plugin.mmbot_run import call_back
 from aucr_app.plugins.mmbot_plugin.routes import mmbot_page
+from aucr_app.plugins.mmbot_plugin.api.reports import mmbot_api_page
+
 from multiprocessing import Process
 
 
 def load(app):
     """Load overrides for Tasks plugin to work properly."""
+    app.register_blueprint(mmbot_page, url_prefix='/mmbot')
+    app.register_blueprint(mmbot_api_page, url_prefix='/mmbot_api')
     mmbot_processor = os.environ.get('MMBOT')
     tasks = "mmbot"
     rabbitmq_server = os.environ.get('RABBITMQ_SERVER')

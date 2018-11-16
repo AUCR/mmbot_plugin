@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    <main class="mdl-layout__content">
+        <div class="page-content">
+                <div class="mdl-grid">
+            <span class="mdl-layout-title">MMBOT Report</span>
+            <div class="mdl-layout-spacer"></div>
+        </div>
+        <div class="mdl-layout-spacer"></div>
+        <table class="mdl-data-table mdl-js-data-table">
+            <thead>
+            </thead>
+            <tbody>
+                {% for k,v in table_dict.items() %}
+                    <tr>
+                        <td><b>{{ k }}</b></td>
+                        <td>{{ v }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% with form_object="prevnextnav", prev_url=prev_url, prev_text="Back", next_url=next_url, next_text="Next" %}
+            {% include "subtemplates/_prev_next_nav.html" %}
+        {% endwith %}
+        <div class="mdl-layout-spacer"></div>
+        </div>
+    </main>
+{% endblock %}

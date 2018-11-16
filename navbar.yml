@@ -1,0 +1,8 @@
+main:
+    user: [
+        link: [
+              page: 'mmbot.mmbot_plugin_dashboard',
+              icon: 'list_alt',
+              title: 'MMBOT'
+            ]
+      ]
