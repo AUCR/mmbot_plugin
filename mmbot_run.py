@@ -1,7 +1,9 @@
 import os
+from mmbot import MaliciousMacroBot
 from aucr_app import db, create_app
 from aucr_app.plugins.mmbot_plugin.models import MmBotTable
-from mmbot import MaliciousMacroBot
+from aucr_app.plugins.auth.models import Message, User
+from aucr_app.plugins.unum.models import UNUM
 
 
 def call_back(ch, method, properties, md5_hash):
@@ -33,4 +35,10 @@ def call_back(ch, method, properties, md5_hash):
                                    md5_hash=md5_hash.decode('utf-8'))
             db.session.add(new_mmbot)
             db.session.commit()
-
+            upload_file = UNUM.query.filter_by(md5_hash=md5_hash.decode('utf-8')).first()
+            msg = Message(sender_id=1, recipient_id=upload_file.created_by, body=str(new_mmbot.to_dict()))
+            db.session.add(msg)
+            db.session.commit()
+            uploaded_user = User.query.filter_by(id=upload_file.created_by).first()
+            uploaded_user.add_notification('unread_message_count', uploaded_user.new_messages())
+            db.session.commit()

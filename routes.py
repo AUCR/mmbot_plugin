@@ -42,4 +42,4 @@ def mmbot_plugin_report():
     """Mmbot report page view."""
     file_hash = request.args.get("md5_hash")
     item = MmBotTable.query.filter_by(md5_hash=file_hash).first().to_dict()
-    return render_template('report.html', title='MMBOT Search', file_hash=file_hash, table_dict=item)
+    return render_template('mmbot_report.html', title='MMBOT Search', file_hash=file_hash, table_dict=item)
