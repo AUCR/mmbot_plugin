@@ -1,17 +1,19 @@
 import os
+import ujson
 from mmbot import MaliciousMacroBot
 from aucr_app import db, create_app
 from aucr_app.plugins.mmbot_plugin.models import MmBotTable
 from aucr_app.plugins.auth.models import Message, User
 from aucr_app.plugins.unum.models import UNUM
 
+mmb = MaliciousMacroBot()
+mmb.mmb_init_model()
+
 
 def call_back(ch, method, properties, md5_hash):
     """ Main function to process documents with mmbot."""
     # First make a log file to track any errors and all running info
     upload_path = os.environ.get('FILE_FOLDER')
-    mmb = MaliciousMacroBot()
-    mmb.mmb_init_model()
     result = mmb.mmb_predict(str(upload_path + md5_hash.decode('utf-8')), datatype='filepath')
     json_result = mmb.mmb_prediction_to_json(result)
     if json_result:
@@ -36,7 +38,8 @@ def call_back(ch, method, properties, md5_hash):
             db.session.add(new_mmbot)
             db.session.commit()
             upload_file = UNUM.query.filter_by(md5_hash=md5_hash.decode('utf-8')).first()
-            msg = Message(sender_id=1, recipient_id=upload_file.created_by, body=str(new_mmbot.to_dict()))
+            message_data = ujson.dumps(new_mmbot.to_dict(), indent=2, sort_keys=True)
+            msg = Message(sender_id=1, recipient_id=upload_file.created_by, body=message_data)
             db.session.add(msg)
             db.session.commit()
             uploaded_user = User.query.filter_by(id=upload_file.created_by).first()
