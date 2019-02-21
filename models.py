@@ -26,10 +26,10 @@ class MmBotTable(db.Model):
     vba_entropy_func_names = db.Column(db.String(120))
     vba_entropy_words = db.Column(db.String(120))
     vba_mean_loc_per_func = db.Column(db.String(120))
-    function_names = db.Column(db.String(1024))
+    function_names = db.Column(db.String(3072))
     prediction = db.Column(db.String(32))
     confidence = db.Column(db.String(32))
-    md5_hash = db.Column(db.String(128), db.ForeignKey('uploaded_file_table.md5_hash'))
+    md5_hash = db.Column(db.String(32), db.ForeignKey('uploaded_file_table.md5_hash'))
 
     def __repr__(self):
         return '<MmBotTable {}>'.format(self.id)
