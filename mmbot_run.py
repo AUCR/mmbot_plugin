@@ -14,7 +14,7 @@ def call_back(ch, method, properties, md5_hash):
     """ Main function to process documents with mmbot."""
     # First make a log file to track any errors and all running info
     upload_path = os.environ.get('FILE_FOLDER')
-    result = mmb.mmb_predict(str(upload_path + md5_hash.decode('utf-8')), datatype='filepath')
+    result = mmb.mmb_predict(str(upload_path + "/" + md5_hash.decode('utf-8')), datatype='filepath')
     json_result = mmb.mmb_prediction_to_json(result)
     if json_result:
         app = create_app()
